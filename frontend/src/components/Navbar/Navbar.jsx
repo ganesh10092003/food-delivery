@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { assets } from '../../assets/assets'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const [menu, setMenu] = useState("Home")
@@ -8,18 +9,15 @@ const Navbar = () => {
     <div className='navbar px-0 py-5 flex justify-between items-center'>
       <img src={assets.logo} alt="" className="logo w-[150px]" />
       <ul className="navbar-menu flex list-none gap-5 text-[#49557e] text-lg">
-        <li onClick={() => { setMenu("Home") }} className={`cursor-pointer ${menu === "Home" ? "pb-[2px] border-b-2 border-[#49557e]" : ""}`}>
+        <Link to='/' onClick={() => { setMenu("Home") }} className={`cursor-pointer ${menu === "Home" ? "pb-[2px] border-b-2 border-[#49557e]" : ""}`}>
           Home
-        </li>
-        <li onClick={() => { setMenu("Menu") }} className={`cursor-pointer ${menu === "Menu" ? "pb-[2px] border-b-2 border-[#49557e]" : ""}`}>
+        </Link>
+        <a href='#explore-menu' onClick={() => { setMenu("Menu") }} className={`cursor-pointer ${menu === "Menu" ? "pb-[2px] border-b-2 border-[#49557e]" : ""}`}>
           Menu
-        </li>
-        <li onClick={() => { setMenu("Mobile-App") }} className={`cursor-pointer ${menu === "Mobile-App" ? "pb-[2px] border-b-2 border-[#49557e]" : ""}`}>
-          Mobile-App
-        </li>
-        <li onClick={() => { setMenu("Contact-us") }} className={`cursor-pointer ${menu === "Contact-us" ? "pb-[2px] border-b-2 border-[#49557e]" : ""}`}>
+        </a>
+        <a href='#footer' onClick={() => { setMenu("Contact-us") }} className={`cursor-pointer ${menu === "Contact-us" ? "pb-[2px] border-b-2 border-[#49557e]" : ""}`}>
           Contact us
-        </li>
+        </a>
       </ul>
       <div className="navbar-right flex items-center gap-10">
         <img src={assets.search_icon} alt="" />
