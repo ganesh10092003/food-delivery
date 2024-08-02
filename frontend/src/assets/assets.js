@@ -54,6 +54,8 @@ import cross_icon from './cross_icon.png'
 import rating_starts from './rating_starts.png'
 import profile_icon from './profile_icon.png'
 import logout_icon from './logout_icon.png'
+import order_icon from './order_icon.png'
+import admin_add_icon from './admin_add_icon.png'
 
 export const assets = {
     logo,
@@ -69,7 +71,9 @@ export const assets = {
     twitter_icon,
     cross_icon,
     profile_icon,
-    logout_icon
+    logout_icon,
+    order_icon,
+    admin_add_icon
 }
 
 export const menu_list = [

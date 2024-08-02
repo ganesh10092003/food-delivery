@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
-export const databaseConnection = () => {
-
+export const connectDB = async () => {
+  await mongoose.connect('mongodb://localhost:27017/InstaFood')
+  console.log("DB connected")
 }
