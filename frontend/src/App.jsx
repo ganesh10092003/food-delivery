@@ -16,14 +16,35 @@ const App = () => {
     <>
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className='app w-[80%] m-auto'>
-        <Navbar setShowLogin={setShowLogin} />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/cart' element={<Cart />} />
+          <Route path='/' element={
+            <>
+              <Navbar setShowLogin={setShowLogin} />
+              <Home />
+            </>
+          } />
+          <Route path='/cart' element={
+            <>
+              <Navbar setShowLogin={setShowLogin} />
+              <Cart />
+            </>
+          } />
           <Route path='/admin'>
-            <Route index element={<Admin />} />
-            <Route path='addItem' element={<AdminAdd />} />
-            <Route path='listItem' element={<AdminList />} />
+            <Route index element={
+              <>
+                <Admin />
+              </>
+            } />
+            <Route path='addItem' element={
+              <>
+                <AdminAdd />
+              </>
+            } />
+            <Route path='listItem' element={
+              <>
+                <AdminList />
+              </>
+            } />
           </Route>
         </Routes>
       </div>
