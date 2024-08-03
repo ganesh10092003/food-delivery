@@ -8,6 +8,7 @@ import LoginPopup from './components/LoginPopup/LoginPopup'
 import AdminList from './pages/AdminList/AdminList'
 import AdminAdd from './pages/AdminAdd/AdminAdd'
 import Admin from './pages/Admin/Admin'
+import AdminNavbar from './components/AdminNavbar/AdminNavbar'
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
@@ -32,6 +33,8 @@ const App = () => {
           <Route path='/admin'>
             <Route index element={
               <>
+                <AdminNavbar />
+                <hr />
                 <Admin />
               </>
             } />
