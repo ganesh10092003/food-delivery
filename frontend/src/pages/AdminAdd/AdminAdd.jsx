@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Add = () => {
+const AdminAdd = () => {
   return (
     <div className='admin-add text-[tomato]'>
       ADDING ITEMS
@@ -8,4 +8,4 @@ const Add = () => {
   )
 }
 
-export default Add
+export default AdminAdd

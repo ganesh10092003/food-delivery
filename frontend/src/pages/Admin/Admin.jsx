@@ -1,8 +1,5 @@
 import React from 'react'
-import AdminSidebar from './components/AdminSidebar/AdminSidebar'
-import { Route, Routes } from 'react-router-dom'
-import Add from './pages/Add/Add'
-import List from './pages/List/List'
+import AdminSidebar from '../../components/AdminSidebar/AdminSidebar'
 
 const Admin = () => {
   return (

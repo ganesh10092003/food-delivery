@@ -5,8 +5,9 @@ import Home from './pages/Home/Home'
 import Cart from './pages/Cart/Cart'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
+import AdminList from './pages/AdminList/AdminList'
+import AdminAdd from './pages/AdminAdd/AdminAdd'
 import Admin from './pages/Admin/Admin'
-import Add from './pages/Admin/pages/Add/Add'
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
@@ -21,7 +22,8 @@ const App = () => {
           <Route path='/cart' element={<Cart />} />
           <Route path='/admin'>
             <Route index element={<Admin />} />
-            <Route path='addItem' element={<Add />} />
+            <Route path='addItem' element={<AdminAdd />} />
+            <Route path='listItem' element={<AdminList />} />
           </Route>
         </Routes>
       </div>

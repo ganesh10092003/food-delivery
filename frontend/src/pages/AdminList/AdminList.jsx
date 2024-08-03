@@ -1,6 +1,6 @@
 import React from 'react'
 
-const List = () => {
+const AdminList = () => {
   return (
     <div className='admin-list'>
       LISTING ITEMS
@@ -8,4 +8,4 @@ const List = () => {
   )
 }
 
-export default List
+export default AdminList
