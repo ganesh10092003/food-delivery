@@ -15,7 +15,16 @@ export default {
       width: {
         'custom-popupWidth': "max(23vw,330px)",
         'custom-buttonWidth-1': "max(15vw,200px)",
-        'custom-buttonWidth-2': "max(10vw,150px)"
+        'custom-buttonWidth-2': "max(10vw,150px)",
+        'custom-logoWidth': "max(15%,130px)",
+        "custom-adminFormWidth": "max(40%,280px)"
+      },
+      maxWidth: {
+        'custom-leftOrderWidth': "max(30%,500px)",
+        'custom-rightOrderWidth': "max(30%,500px)"
+      },
+      margin: {
+        'custom-marginLeft': "max(5vw,25px)"
       },
       keyframes: {
         'fadeIn': {

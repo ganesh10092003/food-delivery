@@ -56,9 +56,15 @@ import profile_icon from './profile_icon.png'
 import logout_icon from './logout_icon.png'
 import order_icon from './order_icon.png'
 import admin_add_icon from './admin_add_icon.png'
+import admin_logo from './admin_logo.png'
+import admin_profile_img from './admin_profile_img.png'
+import admin_upload_area from './admin_upload_area.png'
 
 export const assets = {
     logo,
+    admin_logo,
+    admin_profile_img,
+    admin_upload_area,
     basket_icon,
     header_img,
     search_icon,

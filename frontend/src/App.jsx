@@ -1,54 +1,29 @@
 import React, { useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Cart from './pages/Cart/Cart'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
-import AdminList from './pages/AdminList/AdminList'
-import AdminAdd from './pages/AdminAdd/AdminAdd'
 import Admin from './pages/Admin/Admin'
-import AdminNavbar from './components/AdminNavbar/AdminNavbar'
+import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
 
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   return (
     <>
-      {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
       <div className='app w-[80%] m-auto'>
+        {!isAdminRoute && <Navbar setShowLogin={setShowLogin} />}
         <Routes>
-          <Route path='/' element={
-            <>
-              <Navbar setShowLogin={setShowLogin} />
-              <Home />
-            </>
-          } />
-          <Route path='/cart' element={
-            <>
-              <Navbar setShowLogin={setShowLogin} />
-              <Cart />
-            </>
-          } />
-          <Route path='/admin'>
-            <Route index element={
-              <>
-                <AdminNavbar />
-                <hr />
-                <Admin />
-              </>
-            } />
-            <Route path='addItem' element={
-              <>
-                <AdminAdd />
-              </>
-            } />
-            <Route path='listItem' element={
-              <>
-                <AdminList />
-              </>
-            } />
-          </Route>
+          <Route path='/' element={<Home />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/order' element={<PlaceOrder />} />
+          <Route path='/admin/*' element={<Admin />} />
         </Routes>
       </div>
       <Footer />
