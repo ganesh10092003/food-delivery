@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { assets } from '../../assets/assets'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
-const AdminAdd = () => {
-  const url = "http://localhost:5000"
+const AdminAdd = ({ url }) => {
   const [image, setImage] = useState(false)
   const [data, setData] = useState({
     name: "",
@@ -16,8 +16,8 @@ const AdminAdd = () => {
     const value = event.target.value
     setData((prev) => ({ ...prev, [name]: value }))
   }
-  useEffect(() => { console.log(data); }, [data])
   const onSubmitHandle = async (event) => {
+    event.preventDefault()
     const formData = new FormData()
     formData.append("name", data.name)
     formData.append("description", data.description)
@@ -33,9 +33,10 @@ const AdminAdd = () => {
         category: "Salad"
       })
       setImage(false)
+      toast.success(response.data.message)
     }
     else {
-
+      toast.error(response.data.message)
     }
   }
 
@@ -44,8 +45,8 @@ const AdminAdd = () => {
       <form onSubmit={onSubmitHandle} className='flex flex-col gap-5 '>
         <div className="add-image-upload flex flex-col gap-5">
           <p>Upload Image</p>
-          <label htmlFor="image">
-            <img className='w-[120px] mt-[-15px]' src={image ? URL.createObjectURL(image) : assets.admin_upload_area} alt="" />
+          <label className='w-[120px]' htmlFor="image">
+            <img src={image ? URL.createObjectURL(image) : assets.admin_upload_area} alt="" />
           </label>
           <input onChange={(event) => { setImage(event.target.files[0]) }} type="file" id='image' hidden required />
         </div>

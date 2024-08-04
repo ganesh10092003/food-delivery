@@ -55,6 +55,7 @@ import rating_starts from './rating_starts.png'
 import profile_icon from './profile_icon.png'
 import logout_icon from './logout_icon.png'
 import order_icon from './order_icon.png'
+import bag_icon from './bag_icon.png'
 import admin_add_icon from './admin_add_icon.png'
 import admin_logo from './admin_logo.png'
 import admin_profile_img from './admin_profile_img.png'
@@ -66,6 +67,7 @@ export const assets = {
     admin_profile_img,
     admin_upload_area,
     basket_icon,
+    bag_icon,
     header_img,
     search_icon,
     rating_starts,

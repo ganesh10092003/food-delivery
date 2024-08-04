@@ -2,6 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import { connectDB } from './config/db.js'
 import foodRouter from './routes/foodRoute.js'
+import userRouter from './routes/userRoute.js'
+import 'dotenv/config'
 
 //app config
 const app = express()
@@ -16,6 +18,7 @@ connectDB();
 // api endpoint
 app.use('/api/food', foodRouter)                      //? all the API end points related to adding fooditems in the menu
 app.use('/images', express.static('uploads'))         //* making the uploads folder global
+app.use('/api/user', userRouter)                      //? the API end points related to user authentification 
 
 app.get('/', (req, res) => {
   res.send("API Working")

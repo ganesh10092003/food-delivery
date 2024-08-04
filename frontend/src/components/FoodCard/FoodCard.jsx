@@ -4,11 +4,11 @@ import { StoreContext } from '../../context/StoreContext'
 
 const FoodCard = ({ _id, name, image, price, description }) => {
 
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext)
+  const { cartItems, addToCart, removeFromCart, backendURL } = useContext(StoreContext)
   return (
     <div className='food-card w-full m-auto rounded-[15px] shadow-[0_0_10px_#00000015] transition duration-300 animate-[fadeIn_1s]'>
       <div className="food-card-img-container relative">
-        <img src={image} alt="" className="food-item-image w-full rounded-[15px_15px_0_0]" />
+        <img src={backendURL + '/images/' + image} alt="" className="food-item-image w-full rounded-[15px_15px_0_0]" />
         {
           !cartItems[_id]
             ? <img className='add w-[35px] absolute bottom-[15px] right-[15px] cursor-pointer rounded-full' onClick={() => { addToCart(_id) }} src={assets.add_icon_white} alt='' />

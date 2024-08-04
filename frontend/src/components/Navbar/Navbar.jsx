@@ -1,11 +1,18 @@
 import React, { useContext, useState } from 'react'
 import { assets } from '../../assets/assets'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { StoreContext } from '../../context/StoreContext'
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("Home")
-  const { getTotalCartAmount } = useContext(StoreContext)
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext)
+
+  const navigate = useNavigate()
+  const logout = () => {
+    localStorage.removeItem("token")
+    setToken("")
+    navigate('/')
+  }
 
   return (
     <div className='navbar px-0 py-[20px] flex justify-between items-center'>
@@ -27,9 +34,18 @@ const Navbar = ({ setShowLogin }) => {
           <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
           <div className={`${getTotalCartAmount() === 0 ? "hidden" : ""} dot absolute min-w-[10px] min-h-[10px] bg-[tomato] rounded-[5px] top-[-8px] right-[-8px]`}></div>
         </div>
-        <button onClick={() => { setShowLogin(true) }} className='bg-transparent text-base text-[#49557e] border-[1px] border-[tomato] py-2 px-7 rounded-[50px] cursor-pointer hover:bg-[#fff4f2] transition duration-300'>
-          Sign In
-        </button>
+        {!token
+          ? <button onClick={() => { setShowLogin(true) }} className='bg-transparent text-base text-[#49557e] border-[1px] border-[tomato] py-2 px-7 rounded-[50px] cursor-pointer hover:bg-[#fff4f2] transition duration-300'>
+            Sign In
+          </button>
+          : <div className='navbar-profile relative group'>
+            <img className='cursor-pointer' src={assets.profile_icon} alt="" />
+            <ul className="nav-profile-dropdown absolute hidden right-0 z-10 group-hover:flex group-hover:flex-col group-hover:gap-[10px] group-hover:bg-[#fff2ef] group-hover:py-[12px] group-hover:px-[25px] group-hover:rounded-[4px] group-hover:border-[1px] group-hover:border-[tomato] group-hover:outline-2 group-hover:outline-[white] group-hover:list-none group-hover:w-max">
+              <li className='hover:text-[tomato] flex items-center gap-[10px] cursor-pointer'><img className='w-5' src={assets.bag_icon} alt="" /><p>Orders</p></li>
+              <hr />
+              <li onClick={logout} className='hover:text-[tomato] flex items-center gap-[10px] cursor-pointer'><img className='w-5' src={assets.logout_icon} alt="" /><p>Logout</p></li>
+            </ul>
+          </div>}
       </div>
     </div >
   )
