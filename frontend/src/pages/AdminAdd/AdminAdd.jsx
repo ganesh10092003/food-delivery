@@ -61,7 +61,7 @@ const AdminAdd = ({ url }) => {
         <div className="add-category-price flex gap-[30px]">
           <div className="add-category flex flex-col gap-5" >
             <p>Product Category</p>
-            <select onChange={onChangeHandle} className='max-w-[120px] p-[10px] border-[1px] border-[#6d6d6d] rounded-[5px] mt-[-20px]' name="category">
+            <select onChange={onChangeHandle} value={data.category} className='max-w-[120px] p-[10px] border-[1px] border-[#6d6d6d] rounded-[5px] mt-[-20px]' name="category">
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
               <option value="Deserts">Deserts</option>
