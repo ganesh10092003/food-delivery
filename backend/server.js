@@ -5,20 +5,18 @@ import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
 import cartRouter from './routes/cartRoute.js'
 import 'dotenv/config'
-import bodyParser from 'body-parser'
 
-//app config
+//! app config
 const app = express()
 
-//middleware
+//! middleware
 app.use(express.json())
-app.use(cors())
-app.use(bodyParser.json())
+app.use(cors({ origin: "*" }))
 
-//db connection
+//! db connection
 connectDB();
 
-// api endpoint
+//! api endpoint
 app.use('/api/food', foodRouter)                      //? all the API end points related to adding fooditems in the menu
 app.use('/images', express.static('uploads'))         //* making the uploads folder global
 app.use('/api/user', userRouter)                      //? the API end points related to user authentification 
