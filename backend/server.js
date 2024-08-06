@@ -5,6 +5,7 @@ import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
 import cartRouter from './routes/cartRoute.js'
 import 'dotenv/config'
+import bodyParser from 'body-parser'
 
 //app config
 const app = express()
@@ -12,6 +13,7 @@ const app = express()
 //middleware
 app.use(express.json())
 app.use(cors())
+app.use(bodyParser.json())
 
 //db connection
 connectDB();

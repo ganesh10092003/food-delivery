@@ -1,10 +1,9 @@
 import userModel from "../models/userModel.js";
-import mongoose from "mongoose";
 
 //add items to users cart
 const addToCart = async (req, res) => {
   try {
-    let userData = await userModel.findOne({ _id: req.user.id })
+    let userData = await userModel.findById(req.user.id)
     let cart = await userData.cart
     if (cart[req.body.itemId] === undefined) {
       cart[req.body.itemId] = 1
@@ -23,7 +22,7 @@ const addToCart = async (req, res) => {
 //remove items from user cart
 const removeFromCart = async (req, res) => {
   try {
-    let userData = await userModel.findOne({ _id: req.user.id })
+    let userData = await userModel.findById(req.user.id)
     let cart = await userData.cart
     if (cart[req.body.itemId] !== undefined && cart[req.body.itemId] > 0) {
       cart[req.body.itemId] -= 1
@@ -42,7 +41,7 @@ const removeFromCart = async (req, res) => {
 //fetch users cart data
 const getCart = async (req, res) => {
   try {
-    let userData = await userModel.findOne({ _id: req.user.id })
+    let userData = await userModel.findById(req.user.id)
     let cart = await userData.cart
     res.json({ success: true, data: cart })
   } catch (error) {

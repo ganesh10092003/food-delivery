@@ -21,7 +21,7 @@ const Cart = () => {
         {food_list.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
-              <div>
+              <div key={index}>
                 <div className='my-[10px] mx-0  cart-items-item grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center text-[black] text-custom-paragraph'>
                   <img className='w-[50px]' src={backendURL + '/images/' + item.image} alt="" />
                   <p className=''>{item.name}</p>

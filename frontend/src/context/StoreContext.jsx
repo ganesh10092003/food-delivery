@@ -9,23 +9,31 @@ const StoreContextProvider = (props) => {
   const [food_list, setFoodList] = useState([])
 
 
-  const addToCart = (itemId) => {
+  const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
     }
     else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
     }
+    if (token) {
+      await axios.post(backendURL + '/api/cart/add', { itemId }, { headers: { 'authorization': token } })
+    }
   }
-  const removeFromCart = (itemId) => {
+  const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
+    if (token) {
+      await axios.post(backendURL + '/api/cart/remove', { itemId }, { headers: { 'authorization': token } })
+    }
   }
   const getTotalCartAmount = () => {
     let totalAmount = 0
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        let itemInfo = food_list.find((product) => (product._id === item))
-        totalAmount += itemInfo.price * cartItems[item]
+    if (Object.keys(cartItems).length > 0) {
+      for (const item in cartItems) {
+        if (cartItems[item] > 0) {
+          let itemInfo = food_list.find((product) => (product._id === item))
+          totalAmount += itemInfo.price * cartItems[item]
+        }
       }
     }
     return totalAmount
@@ -37,14 +45,29 @@ const StoreContextProvider = (props) => {
   }
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadMenu = async () => {
       await fetchFoodList()
-      if (localStorage.getItem("token")) {
-        setToken(localStorage.getItem("token"))
+    }
+    loadMenu()
+  }, [])
+
+  const loadCartData = async (token) => {
+    const response = await axios.post(backendURL + '/api/cart/get', {}, { headers: { 'authorization': token } })
+    setCartItems(response.data.data)
+  }
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"))
+    const loadCart = async () => {
+      if (token) {
+        await loadCartData(token)
+      }
+      else {
+        setCartItems({})
       }
     }
-    loadData()
-  }, [])
+    loadCart()
+  }, [token])
 
   const contextValue = {
     food_list,
