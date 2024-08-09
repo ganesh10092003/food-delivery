@@ -5,6 +5,7 @@ import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
 import cartRouter from './routes/cartRoute.js'
 import 'dotenv/config'
+import orderRouter from './routes/orderRoute.js'
 
 //! app config
 const app = express()
@@ -20,7 +21,8 @@ connectDB();
 app.use('/api/food', foodRouter)                      //? all the API end points related to adding fooditems in the menu
 app.use('/images', express.static('uploads'))         //* making the uploads folder global
 app.use('/api/user', userRouter)                      //? the API end points related to user authentification 
-app.use('/api/cart', cartRouter)                      //?
+app.use('/api/cart', cartRouter)                      //? the API end points related to cart data of each user
+app.use('api/order', orderRouter)
 
 app.get('/', (req, res) => {
   res.send("API Working")
